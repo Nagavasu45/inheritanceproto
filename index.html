@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>
+    Q1.	Create 2 objects - parent and child. Attach methods to parent and use those methods in child object using parents prototype
+</h2>
+<h3><pre>
+    let parent={
+        calc:function(a,b){
+            console.log(a-b);
+            console.log(a+b);
+        }
+    }
+    let child=Object.create(parent);
+    console.log("first object")
+    child.calc(10,5)    
+    
+</pre>
+
+</h3>
+<h3>
+    output:
+    first object
+    5
+    15
+    second object
+    10
+    30
+</h3>
+<h3>
+    explaination:
+    in this code i have created two objects like parent object and child object and then in the child
+    create object refernce to the parent object and parent object has one method like calc with 2 aruments
+    after that call the child.calc(10,5)then we get the ouput
+</h3>
+<h2>
+    Q2.	Write code to explain prototype chaining
+</h2>
+<h3>
+    <pre>
+
+    </pre>
+</h3>
+<h3>
+
+</h3>
+<h2>
+    Q3.	Add a method to calculate sum of all elements in Array in array's protype, use that method to calculate sum for multiple arrays
+</h2>
+<h3>
+    <pre>
+
+    </pre>
+</h3>
+<h2>
+    Q4.	Write a JavaScript function to retrieve all the names of object's own and inherited properties.
+</h2>
+<h3>
+    <pre>
+
+    </pre>
+</h3>
+<h3>
+
+</h3>
+</body>
+</html>
