@@ -10,59 +10,126 @@
     Q1.	Create 2 objects - parent and child. Attach methods to parent and use those methods in child object using parents prototype
 </h2>
 <h3><pre>
-    let parent={
-        calc:function(a,b){
-            console.log(a-b);
-            console.log(a+b);
-        }
+    function Parent(name) {
+        this.name=name;
     }
-    let child=Object.create(parent);
-    
-    child.calc(10,5)    
+    Parent.prototype.first = function() {
+        console.log(this.name)
+    }
+
+    function Child(name,greet){
+        Parent.call(this, name);
+        this.greet =greet;
+    }
+
+    Child.prototype = Object.create(Parent.prototype);
+
+    Child.prototype.second = function() {
+                console.log(this.name,this.greet);
+    };
+
+    var parent = new Parent('Vasu');
+    var child = new Child('Vasuvasu', " hi");
+
+    parent.first(); 
+    child.first();
+    child.second()      
     
 </pre>
 
 </h3>
-<h3>
+<h3><pre>
     output:    
-    5
-    15
+    Vasu
+    Vasuvasu
+    Vasuvasu  hi
+</pre>
     
 </h3>
-<h3>
-    explaination:
-    in this code i have created two objects like parent object and child object and then in the child
-    create object refernce to the parent object and parent object has one method like calc with 2 aruments
-    after that call the child.calc(10,5)then we get the ouput
-</h3>
+
 <h2>
     Q2.	Write code to explain prototype chaining
 </h2>
 <h3>
     <pre>
+        function Person() {
+            this.name= 'Vasu'
+        }
+        Person.prototype.name = 'Naga';
+        Person.prototype.age = 9;
+        const person1 = new Person();
+        console.log(person1.name); 
+        console.log(person1.age); 
 
     </pre>
+</h3><h3>
+<pre>
+output:Vasu
+        9
+    </pre>
 </h3>
-<h3>
-
+<h3>explaination:
+    In the above code, there is a function like Person() and inside we have this.name='Vasu' and then 
+    Person.prototype.name='Naga' and one more is age propertie and then one object is  created
+    for the function and call the name and age with using created object,and here the concept is 
+    if you want to get the name value then it will search in inside of function and then if there is no 
+    any name variable and then go to inherited names or properties if it find anything with name variable 
+    we get the output this kind of process is called prototype chaining
 </h3>
 <h2>
     Q3.	Add a method to calculate sum of all elements in Array in array's protype, use that method to calculate sum for multiple arrays
 </h2>
 <h3>
     <pre>
+        Array.prototype.add = function(){
+            let sum = 0;
+            this.map((item)=>{
+                sum += item;
+            })
+            return sum;
+        }
+
+        var arr1 = [1,11,111];
+        var arr2 = [10,100,1000];
+        var arr3 = [5,55,555];
+        console.log(arr1.add())
+        console.log(arr2.add())
+        console.log(arr3.add())
 
     </pre>
+</h3>
+<h3><pre>
+    output:123
+           1110
+           615
+        </pre>
 </h3>
 <h2>
     Q4.	Write a JavaScript function to retrieve all the names of object's own and inherited properties.
 </h2>
 <h3>
-    <pre>
+    <pre>function allKeys(obj) {
+        if (!isObject(obj)) return [];
+        var keys = [];
+        for (var key in obj) keys.push(key);
+        return keys;
+    }
+    function isObject(obj) 
+    {
+        var type = typeof obj;
+        return type === 'function' || type === 'object' && !!obj;
+      }
+    function Student(name) {
+      this.name = name;
+    }
+    Student.prototype.rollno = 9;
+    console.log(allKeys(new Student("vasu")));
+    
+            
 
     </pre>
 </h3>
-<h3>
+<h3><pre>output:[name,rollno]</pre>
 
 </h3>
 </body>
